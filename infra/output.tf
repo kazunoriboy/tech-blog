@@ -1,3 +1,3 @@
 output "ec2_global_ips" {
-  value = aws_instance.tech-blog-server.*.public_ip
+  value = aws_eip.tech-blog-eip.*.public_ip
 }
