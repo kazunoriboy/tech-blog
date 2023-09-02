@@ -49,6 +49,23 @@ resource "aws_route_table" "my-tech-blog_rt" {
 }
 
 # ---------------------
+# Route Settings
+# ---------------------
+resource "aws_route" "public" {
+  route_table_id         = aws_route_table.my-tech-blog_rt.id
+  gateway_id             = aws_internet_gateway.my-tech-blog_igw.id
+  destination_cidr_block = "0.0.0.0/0"
+}
+
+# ---------------------
+# Route Table Association settings
+# ---------------------
+resource "aws_route_table_association" "my-tech-blog_rta" {
+  subnet_id      = aws_subnet.my-tech-blog_subnet.id
+  route_table_id = aws_route_table.my-tech-blog_rt.id
+}
+
+# ---------------------
 # Security Group settings
 # ---------------------
 data "http" "ifconfig" {
@@ -74,7 +91,7 @@ resource "aws_security_group" "my-tech-blog_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [local.allowed_cidr]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -100,10 +117,5 @@ resource "aws_security_group" "my-tech-blog_sg" {
   }
 
 }
-
-
-
-
-
 
 
