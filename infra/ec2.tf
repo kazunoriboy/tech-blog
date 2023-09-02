@@ -36,15 +36,8 @@ resource "aws_key_pair" "tech-blog_keypair" {
   public_key = tls_private_key.tech-blog-key.public_key_openssh
 }
 
-# ---------------------
-# EC2 Instance setting
-# ---------------------
-data "aws_ssm_parameter" "amzn2_latest_ami" {
-  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-}
-
 resource "aws_instance" "tech-blog-server" {
-  ami                         = data.aws_ssm_parameter.amzn2_latest_ami.value
+  ami                         = "ami-0310b105770df9334"
   instance_type               = "t2.micro"
   availability_zone           = var.az_a
   vpc_security_group_ids      = [aws_security_group.my-tech-blog_sg.id]
