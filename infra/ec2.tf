@@ -18,6 +18,17 @@ locals {
 resource "local_file" "tech-blog_key_pem" {
   filename = local.private_key_file
   content  = tls_private_key.tech-blog-key.private_key_pem
+  provisioner "local-exec" {
+    command = "chmod 400 ${local.private_key_file}"
+  }
+}
+
+resource "local_file" "public_key_openssh" {
+  filename = local.public_key_file
+  content  = tls_private_key.tech-blog-key.public_key_openssh
+  provisioner "local-exec" {
+    command = "chmod 600 ${local.public_key_file}"
+  }
 }
 
 resource "aws_key_pair" "tech-blog_keypair" {
