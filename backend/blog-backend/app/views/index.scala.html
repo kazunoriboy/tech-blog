@@ -1,5 +1,8 @@
-@()
+@(articles: Array[String])
 
 @main("トップページ") {
   <h1>ブログトップページ</h1>
+  @for(article <- articles) {
+    <p>@article</p>
+  }
 }
