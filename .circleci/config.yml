@@ -52,7 +52,7 @@ jobs:
           
       - run:
           working_directory: ~/backend/src
-          command: sbt dist
+          command: cat /dev/null | sbt dist
 
       - run:
           working_directory: ~/backend/src
