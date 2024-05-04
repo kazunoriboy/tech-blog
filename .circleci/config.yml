@@ -52,7 +52,7 @@ jobs:
           
       - run:
           working_directory: ~/backend/src
-          command: ls && bt dist
+          command: ls && sbt dist
 
       - run:
           working_directory: ~/backend/src
