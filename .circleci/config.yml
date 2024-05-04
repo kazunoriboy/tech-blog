@@ -29,7 +29,9 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
-      - add_ssh_keys
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:qldRBaVoDtisNVLKRiS5Olgt4ae8iAEbMY8mb9pX8xA"
 
       # Download and cache dependencies
       - restore_cache:
