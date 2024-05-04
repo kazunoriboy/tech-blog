@@ -29,6 +29,8 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
+      - add_ssh_keys:
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -54,9 +56,7 @@ jobs:
           working_directory: ~/project/backend/src
           command: cat /dev/null | sbt dist
 
-      - add_ssh_keys:
-          fingerprints:
-            - SHA256:qldRBaVoDtisNVLKRiS5Olgt4ae8iAEbMY8mb9pX8xA
+
           
       - run:
           working_directory: ~/project/backend/src
