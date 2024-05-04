@@ -38,7 +38,7 @@ jobs:
 
       - run: 
           working_directory: ~/backend/src
-          command: cat /dev/null | sbt test:compile
+          command: cat /dev/null | sbt Test/compile
 
       - save_cache:
           paths:
@@ -48,7 +48,19 @@ jobs:
       # run tests!
       - run:
           working_directory: ~/backend/src
-          command: cat /dev/null | sbt test:test
+          command: cat /dev/null | sbt Test/test
+          
+      - run:
+          working_directory: ~/backend/src
+          command: sbt dist
+
+      - run:
+          working_directory: ~/backend/src
+          command: scp ./target/universal/blog-backend-1.0.SNAPSHOT.zip $USER@$HOST:~/
+
+      - run:
+          working_directory: ~/backend/src
+          command: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
