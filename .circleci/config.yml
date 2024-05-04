@@ -29,6 +29,10 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:qldRBaVoDtisNVLKRiS5Olgt4ae8iAEbMY8mb9pX8xA"
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -37,7 +41,7 @@ jobs:
             - v1-dependencies-
 
       - run: 
-          working_directory: ~/backend/src
+          working_directory: ~/project/backend/src
           command: cat /dev/null | sbt test:compile
 
       - save_cache:
@@ -47,8 +51,20 @@ jobs:
 
       # run tests!
       - run:
-          working_directory: ~/backend/src
+          working_directory: ~/project/backend/src
           command: cat /dev/null | sbt test:test
+          
+      - run:
+          working_directory: ~/project/backend/src
+          command: cat /dev/null | sbt dist
+
+      - run:
+          working_directory: ~/project/backend/src
+          command: scp -o StrictHostKeyChecking=no ./target/universal/blog-backend-1.0-SNAPSHOT.zip $USER@$HOST:~/
+ 
+      - run:
+          working_directory: ~/project/backend/src
+          command: ssh -o StrictHostKeyChecking=no -v $USER@$HOST "./tech-blog/deploy.sh"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
