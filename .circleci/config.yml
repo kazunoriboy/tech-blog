@@ -48,7 +48,7 @@ jobs:
       # run tests!
       - run:
           working_directory: ~/backend/src
-          command: cat /dev/null | sbt Test/test
+          command: pwd && ls && cat /dev/null | sbt Test/test
           
       - run:
           working_directory: ~/backend/src
