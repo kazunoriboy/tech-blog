@@ -32,34 +32,34 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "backend/src/build.sbt" }}
+            - v1-dependencies-{{ checksum "project/backend/src/build.sbt" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       - run: 
-          working_directory: ~/backend/src
+          working_directory: ~/project/backend/src
           command: cat /dev/null | sbt Test/compile
 
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies--{{ checksum "backend/src/build.sbt" }}
+          key: v1-dependencies--{{ checksum "project/backend/src/build.sbt" }}
 
       # run tests!
       - run:
-          working_directory: ~/backend/src
-          command: pwd && ls && cat /dev/null | sbt Test/test
+          working_directory: ~/project/backend/src
+          command: cat /dev/null | sbt Test/test
           
       - run:
-          working_directory: ~/backend/src
-          command: pwd && ls target && cat /dev/null | sbt dist
+          working_directory: ~/project/backend/src
+          command: pwd && ls && cat /dev/null | sbt dist
 
       - run:
-          working_directory: ~/backend/src
+          working_directory: ~/project/backend/src
           command: scp ./target/universal/blog-backend-1.0.SNAPSHOT.zip $USER@$HOST:~/
 
       - run:
-          working_directory: ~/backend/src
+          working_directory: ~/project/backend/src
           command: ssh -oStrictHostKeyChecking=no -v $USER@$HOST "./tech-blog/deploy.sh"
 
 # Orchestrate jobs using workflows
