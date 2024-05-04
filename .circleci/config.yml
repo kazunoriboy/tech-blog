@@ -53,6 +53,7 @@ jobs:
       - run:
           working_directory: ~/project/backend/src
           command: pwd && ls && cat /dev/null | sbt dist
+
       - add_ssh_keys:
           fingerprints:
             - SHA256:qldRBaVoDtisNVLKRiS5Olgt4ae8iAEbMY8mb9pX8xA
