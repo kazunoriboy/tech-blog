@@ -1,7 +1,5 @@
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   build:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -62,7 +60,7 @@ jobs:
  
       - run:
           working_directory: ~/project/backend/src
-          command: ssh -o StrictHostKeyChecking=no -v $USER@$HOST "./tech-blog/deploy.sh"
+          command: ssh -o StrictHostKeyChecking=no -v $USER@$HOST "source ~/.bash_profile && ./tech-blog/deploy.sh"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
