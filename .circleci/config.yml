@@ -59,7 +59,7 @@ jobs:
           
       - run:
           working_directory: ~/project/backend/src
-          command: scp ./target/universal/blog-backend-1.0.SNAPSHOT.zip $USER@$HOST:~/
+          command: scp　-o StrictHostKeyChecking=no ./target/universal/blog-backend-1.0.SNAPSHOT.zip $USER@$HOST:~/
 
       - run:
           working_directory: ~/project/backend/src
