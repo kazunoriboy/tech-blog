@@ -29,7 +29,7 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
-      - add_ssh_keys:
+      - add_ssh_keys
 
       # Download and cache dependencies
       - restore_cache:
