@@ -8,7 +8,9 @@ rm blog-backend-1.0-SNAPSHOT.zip
 
 kill $(lsof -t -i:9000)
 
+echo "appliccation secretを出力"
 echo $APPLICATION_SECRET
+echo "appliccation secretを出力完了"
 
 blog-backend-1.0-SNAPSHOT/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &
 
