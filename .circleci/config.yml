@@ -52,7 +52,7 @@ jobs:
           
       - run:
           working_directory: ~/backend/src
-          command: cat /dev/null | sbt dist
+          command: ls && bt dist
 
       - run:
           working_directory: ~/backend/src
@@ -60,7 +60,7 @@ jobs:
 
       - run:
           working_directory: ~/backend/src
-          command: ssh -oStrictHostKeyChecking=no -v $USER@$DNS "./deploy.sh"
+          command: ssh -oStrictHostKeyChecking=no -v $USER@$HOST "./tech-blog/deploy.sh"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
