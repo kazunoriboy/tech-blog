@@ -10,5 +10,5 @@ kill $(lsof -t -i:9000)
 
 printenv
 
-blog-backend-1.0-SNAPSHOT/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &
+nohup blog-backend-1.0-SNAPSHOT/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &
 
