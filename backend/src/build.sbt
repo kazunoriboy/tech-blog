@@ -9,6 +9,7 @@ scalaVersion := "3.3.3"
 
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "7.0.0" % Test
+libraryDependencies += "org.webjars.bower" % "compass-mixins" % "0.12.7"
 
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "tech.toku1.controllers._"
