@@ -71,7 +71,7 @@ jobs:
             mv $DIR "${NOW}_${DIR}" && \
             kill $(lsof -t -i:9000) && \
             find . -type d -name "*SNAPSHOT" | grep -v $NOW | xargs rm -r && \
-            nohup $TARGET/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &"
+            $TARGET/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET}"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
