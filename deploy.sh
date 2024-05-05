@@ -11,5 +11,5 @@ mv $DIR "${NOW}_${DIR}"
 kill $(lsof -t -i:9000)
 find . -type d -name "*SNAPSHOT" | grep -v $NOW | xargs rm -r
 
-nohup $TARGET/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &
+nohup $TARGET/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} > deploy.log 2>&1 &
 
