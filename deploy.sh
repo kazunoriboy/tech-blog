@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd
+cd ~/
 
 unzip -o blog-backend-1.0-SNAPSHOT.zip
 
