@@ -60,7 +60,18 @@ jobs:
  
       - run:
           working_directory: ~/project/backend/src
-          command: ssh -o StrictHostKeyChecking=no -v -t $USER@$HOST "source ~/.bash_profile && ./tech-blog/deploy.sh"
+          command: |
+            ssh -o StrictHostKeyChecking=no -v -t $USER@$HOST "source ~/.bash_profile && \
+            cd ~/ &&  \
+            ZIP='blog-backend-1.0-SNAPSHOT.zip' && \
+            NOW=`date +'%m%d%Y%H%M%S'` && \
+            DIR=${ZIP%.zip} && \
+            TARGET="${NOW}_${DIR}" && \
+            unzip -o $ZIP && \
+            mv $DIR "${NOW}_${DIR}" && \
+            kill $(lsof -t -i:9000) && \
+            find . -type d -name "*SNAPSHOT" | grep -v $NOW | xargs rm -r && \
+            nohup $TARGET/bin/blog-backend -Dplay.http.secret.key=${APPLICATION_SECRET} &"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
