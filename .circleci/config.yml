@@ -62,7 +62,7 @@ jobs:
           working_directory: ~/project/backend/src
           command: |
             ssh -o StrictHostKeyChecking=no $USER@$HOST "source ~/.bash_profile && \
-            nohup tech-blog/deploy.sh & disown"
+            nohup tech-blog/deploy.sh" &
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
