@@ -60,7 +60,7 @@ jobs:
  
       - run:
           working_directory: ~/project/backend/src
-          command: ssh -o StrictHostKeyChecking=no -v -t $USER@$HOST "source ~/.bash_profile && nohup ./tech-blog/deploy.sh &"
+          command: ssh -o StrictHostKeyChecking=no -v $USER@$HOST "source ~/.bash_profile && nohup ./tech-blog/deploy.sh &"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
